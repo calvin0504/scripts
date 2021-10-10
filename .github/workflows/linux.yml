@@ -1,0 +1,25 @@
+name: linux
+
+on:
+  push:
+    paths:
+      - 'linux'
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: install deps
+        run: ./install-deps.sh
+
+      - name: download zipfile
+        run: wget https://github.com/calvin0504/linux/archive/$(git rev-parse HEAD:linux).zip -O linux.zip
+        
+      - name: unzip file
+        run: unzip linux.zip
+        
+      - name: build-linux_tinyconfig
+        run: ./build-linux.sh linux-$(git rev-parse HEAD:linux) tinyconfig
