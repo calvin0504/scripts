@@ -12,9 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: install deps
-        run: ./install-deps.sh
-
       - name: download zipfile
         run: wget https://github.com/calvin0504/linux/archive/$(git rev-parse HEAD:linux).zip -O linux.zip
         
